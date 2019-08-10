@@ -14,7 +14,7 @@
 	health = 200
 	say_list_type = /datum/say_list/protean_blob
 
-	ai_holder_type = /datum/ai_holder/simple_mob/inert
+	// ai_inactive = TRUE //Always off //VORESTATION AI TEMPORARY REMOVAL
 	show_stat_health = FALSE //We will do it ourselves
 
 	response_help = "pats the"
@@ -151,18 +151,17 @@
 
 /mob/living/simple_mob/protean_blob/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
 	if(humanform)
-		mind.transfer_to(humanform)
+		humanform.death(gibbed = gibbed)
 		for(var/organ in humanform.internal_organs)
 			var/obj/item/organ/internal/O = organ
 			O.removed()
 			O.forceMove(drop_location())
-		humanform.death(gibbed = gibbed)
 		var/list/items = humanform.get_equipped_items()
 		if(prev_left_hand) items += prev_left_hand
 		if(prev_right_hand) items += prev_right_hand
 		for(var/obj/object in items)
 			object.forceMove(drop_location())
-		// test QDEL_NULL(humanform) //Don't leave it just sitting in nullspace
+		QDEL_NULL(humanform) //Don't leave it just sitting in nullspace
 
 	animate(src,alpha = 0,time = 2 SECONDS)
 	sleep(2 SECONDS)
@@ -201,7 +200,7 @@
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
-/mob/living/simple_mob/protean_blob/apply_attack(var/atom/A, damage_to_do) //VORESTATION AI TEMPORARY REMOVAL (Marking this as such even though it was an edit.)
+/mob/living/simple_mob/protean_blob/attack_hand(var/atom/A) //VORESTATION AI TEMPORARY REMOVAL (Marking this as such even though it was an edit.)
 	if(refactory && istype(A,/obj/item/stack/material))
 		var/obj/item/stack/material/S = A
 		var/substance = S.material.name
