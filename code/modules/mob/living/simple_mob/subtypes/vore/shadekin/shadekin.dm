@@ -1,8 +1,3 @@
-/datum/category_item/catalogue/fauna/shadekin		//TODO: VIRGO_LORE_WRITING_WIP
-	name = "Sapients - Shadekin"
-	desc = ""
-	value = CATALOGUER_REWARD_EASY
-
 /mob/living/simple_mob/shadekin //Spawning the prototype spawns a random one, see initialize()
 	name = "shadekin"
 	desc = "Some sort of fluffer. Big ears, long tail."
@@ -13,7 +8,7 @@
 	faction = "shadekin"
 	ui_icons = 'icons/mob/shadekin_hud.dmi'
 	mob_class = MOB_CLASS_HUMANOID
-	mob_bump_flag = 0
+	mob_bump_flag = HUMAN
 
 	maxHealth = 200
 	health = 200
@@ -449,14 +444,3 @@
 	say_maybe_target = list("...mar?")
 	say_got_target = list("MAR!!!")
 	//reactions = list("Mar?" = "Marrr!", "Mar!" = "Marrr???", "Mar." = "Marrr.")
-
-/datum/language/shadekin
-	name = "Shadekin Empathy"
-	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
-	colour = "changeling"
-	speech_verb = "mars"
-	ask_verb = "mars"
-	exclaim_verb = "mars"
-	key = "m"
-	machine_understands = 0
-	flags = WHITELISTED | HIVEMIND

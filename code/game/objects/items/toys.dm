@@ -322,6 +322,12 @@
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = H
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == "run")
@@ -928,6 +934,12 @@
 	desc = "A plushie of an adorable diona nymph! While its level of self-awareness is still being debated, its level of cuteness is not."
 	icon_state = "nymphplushie"
 	pokephrase = "Chirp!"
+
+/obj/item/toy/plushie/teshari
+	name = "teshari plush"
+	desc = "This is a plush teshari. Very soft, with a pompom on the tail. The toy is made well, as if alive. Looks like she is sleeping. Shhh!"
+	icon_state = "teshariplushie"
+	pokephrase = "Rya!"
 
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
